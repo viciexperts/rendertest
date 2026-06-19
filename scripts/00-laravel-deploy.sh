@@ -7,6 +7,8 @@ composer install --no-dev --working-dir=/var/www/html --optimize-autoloader
 echo "Preparing SQLite database..."
 mkdir -p /var/data
 touch "${DB_DATABASE:-/var/data/database.sqlite}"
+chmod -R a+rwX /var/data
+chmod -R a+rwX /var/www/html/storage /var/www/html/bootstrap/cache
 
 if [ -z "${APP_KEY:-}" ]; then
     if [ ! -s /var/data/app.key ]; then
