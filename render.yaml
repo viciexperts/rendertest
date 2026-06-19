@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: rendertest
+    runtime: docker
+    plan: starter
+    branch: main
+    autoDeployTrigger: commit
+    healthCheckPath: /up
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /var/data/database.sqlite
+      - key: LOG_CHANNEL
+        value: stderr
+    disk:
+      name: sqlite-data
+      mountPath: /var/data
+      sizeGB: 1
