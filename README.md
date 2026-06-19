@@ -34,6 +34,7 @@ php artisan key:generate --show
 6. Pega esa llave en `APP_KEY` y crea el servicio.
 
 La base SQLite queda en `/var/data/database.sqlite`, que esta montado en un persistent disk de Render.
+Si no defines `APP_KEY`, el script de arranque genera una llave y la guarda en `/var/data/app.key`.
 
 ### Opcion manual: Web Service
 
@@ -56,3 +57,4 @@ La base SQLite queda en `/var/data/database.sqlite`, que esta montado en un pers
 7. Deploy.
 
 Nota: para que SQLite sobreviva redeploys/restarts necesitas persistent disk. Sin disk, el filesystem de Render es efimero.
+Tambien se usa el disk para guardar `/var/data/app.key` si `APP_KEY` no fue configurado en Render.
